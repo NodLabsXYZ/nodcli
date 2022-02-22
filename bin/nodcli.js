@@ -1,2 +1,4 @@
 #! /usr/bin/env node
-console.log("console.log output")
+
+require = require('esm')(module /*, options*/);
+require('../src/cli').cli(process.argv);

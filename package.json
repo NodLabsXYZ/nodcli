@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/NodLabsXYZ/nodcli/issues"
   },
-  "homepage": "https://github.com/NodLabsXYZ/nodcli#readme"
+  "homepage": "https://github.com/NodLabsXYZ/nodcli#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
 }
