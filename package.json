@@ -1,0 +1,32 @@
+{
+  "name": "nodcli",
+  "version": "0.0.1",
+  "description": "Tools for building in web3",
+  "bin": {
+    "nod": "bin/nodcli.js"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NodLabsXYZ/nodcli.git"
+  },
+  "keywords": [
+    "cli",
+    "web3",
+    "crypto",
+    "solidity",
+    "smartcontract"
+  ],
+  "author": "NodLabs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NodLabsXYZ/nodcli/issues"
+  },
+  "homepage": "https://github.com/NodLabsXYZ/nodcli#readme"
+}
