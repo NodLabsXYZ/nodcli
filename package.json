@@ -2,6 +2,7 @@
   "name": "nodcli",
   "version": "0.0.1",
   "description": "Tools for building in web3",
+  "type": "module",
   "bin": {
     "nod": "bin/nodcli.js"
   },
@@ -30,6 +31,9 @@
   },
   "homepage": "https://github.com/NodLabsXYZ/nodcli#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "commander": "^9.0.0",
+    "esm": "^3.2.25",
+    "hardhat": "^2.8.4",
+    "ora": "^6.1.0"
   }
 }
