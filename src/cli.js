@@ -2,6 +2,7 @@ import path from "path";
 import { Command } from 'commander';
 import compile from '../src/compile.js';
 import getContractArtifact from '../src/getContractArtifact.js'
+import uploadContractInfo from '../src/uploadContractInfo.js';
 
 const cli = () => {
   const directoryName = path.basename(process.cwd());
@@ -23,6 +24,7 @@ const cli = () => {
     .action(async (name=directoryName, _options) => {
       await compile(name);
       const artifact = await getContractArtifact(name);
+      await uploadContractInfo(artifact);
     });
   
   program.parse();  
