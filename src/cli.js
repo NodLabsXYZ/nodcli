@@ -6,6 +6,9 @@ import getProjects from "./getProjects.js";
 import getProject from "./getProject.js";
 import findDeployment from "./findDeployment.js";
 import writeFile from './writeFile.js';
+import openWebsite from './openWebsite.js';
+
+const dashboardURL = 'https://localhost:3001'
 
 const cli = () => {
   const directoryName = path.basename(process.cwd());
@@ -31,6 +34,7 @@ const cli = () => {
       await compile(name);
       const artifact = await getContractArtifact(name);
       await uploadContractInfo(artifact);
+      console.log(`Visit ${dashboardURL} or run \`nod dashboard\` to view your dashboard`);
     });
 
   program.command('import')
@@ -70,6 +74,12 @@ const cli = () => {
       console.log("Contract information written to: ", path);
     });
   
+  program.command('dashboard')
+    .description('Open your dashboard in a browser')
+    .action(async (_options) => {
+      openWebsite(dashboardURL);
+    });
+
   program.parse();  
 }
 
