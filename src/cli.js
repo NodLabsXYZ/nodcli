@@ -8,7 +8,7 @@ import findDeployment from "./findDeployment.js";
 import writeFile from './writeFile.js';
 import openWebsite from './openWebsite.js';
 
-const dashboardURL = 'https://localhost:3001'
+const dashboardURL = 'https://contract-deployment-dashboard-test.vercel.app/'
 
 const cli = () => {
   const directoryName = path.basename(process.cwd());
@@ -34,7 +34,15 @@ const cli = () => {
       await compile(name);
       const artifact = await getContractArtifact(name);
       await uploadContractInfo(artifact);
-      console.log(`Visit ${dashboardURL} or run \`nod dashboard\` to view your dashboard`);
+      console.log("")
+      console.log("")
+      console.log("To view your dashboard visit:")
+      console.log("")
+      console.log(`${dashboardURL}/project/${name}`)
+      console.log("")
+      console.log(`or run \`nod dashboard ${name}\``)
+      console.log("")
+      console.log("")
     });
 
   program.command('import')
@@ -71,6 +79,8 @@ const cli = () => {
         path, 
         JSON.stringify(deployment, null, 2)
       )
+      console.log("")
+      console.log("")
       console.log("Contract information written to: ", path);
       console.log("")
       console.log("You can now access the contract information in your project:");
@@ -92,8 +102,24 @@ const cli = () => {
   
   program.command('dashboard')
     .description('Open your dashboard in a browser')
-    .action(async (_options) => {
-      openWebsite(dashboardURL);
+    .argument(
+      '[name]', 
+      'go directly to the project page with the given name'
+    )
+    .action(async (name, _options) => {
+      if (!name) {
+        openWebsite(dashboardURL);
+        return;
+      }
+      
+      const projects = await getProjects();
+      const project = projects.find(p => p.title === name);
+      if (!project) {
+        console.log("Project not found, opening base dashboard instead...");
+        openWebsite(dashboardURL);
+        return;
+      }
+      openWebsite(`${dashboardURL}/project/${project.id}`);
     });
 
   program.parse();  
