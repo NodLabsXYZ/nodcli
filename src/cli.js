@@ -5,6 +5,7 @@ import uploadContractInfo from '../src/uploadContractInfo.js';
 import getProjects from "./getProjects.js";
 import getProject from "./getProject.js";
 import findDeployment from "./findDeployment.js";
+import writeFile from './writeFile.js';
 
 const cli = () => {
   const directoryName = path.basename(process.cwd());
@@ -61,7 +62,12 @@ const cli = () => {
       const projectDetails = await getProject(project.id);
       const deployment = findDeployment(projectDetails, address);
        
-      console.log(deployment)
+      const path = `contracts/${projectDetails.title}.js`
+      writeFile(
+        path, 
+        JSON.stringify(deployment, null, 2)
+      )
+      console.log("Contract information written to: ", path);
     });
   
   program.parse();  
