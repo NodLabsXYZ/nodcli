@@ -72,6 +72,22 @@ const cli = () => {
         JSON.stringify(deployment, null, 2)
       )
       console.log("Contract information written to: ", path);
+      console.log("")
+      console.log("You can now access the contract information in your project:");
+      console.log("")
+      console.log("")
+      console.log(`const ${projectDetails.title} = require('../contracts/${projectDetails.title}.js')`);
+      console.log("")
+      console.log("or")
+      console.log("")
+      console.log(`import ${projectDetails.title} from '../contracts/${projectDetails.title}.js'`);
+      console.log("")
+      console.log("")
+      console.log("and then access the network, address, or abi of the contract like so:")
+      console.log("")
+      console.log(`console.log(${projectDetails.title}.abi)`);    
+      console.log("")
+      console.log("")  
     });
   
   program.command('dashboard')
